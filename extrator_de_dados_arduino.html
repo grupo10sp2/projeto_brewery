@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrator de dados Arduíno</title>
+</head>
+<body>
+    Dados gerados pelo Arduíno: <br>
+    <textarea id="textarea_dados" cols="40" rows="10"></textarea><br><br>
+    Posição para extrair:
+    <input type="number" id="input_posicao"><br><br>
+    <button onclick="extrairElemento()">Extrair</button><br><br>
+    <div id="display"></div>
+</body>
+</html>
+<script>    
+    function extrairElemento() {
+        display.innerHTML = "";
+        var dados = textarea_dados.value;
+        var separacao_linhas = dados.split("\n");
+        var posicao = Number(input_posicao.value);
+        var linha = 0;
+        while (linha < separacao_linhas.length) {
+           var separacao_posicao = separacao_linhas[linha].split(";");
+           display.innerHTML += separacao_posicao[posicao] + "<br>";
+           linha++
+        }
+    }    
+</script>
