@@ -11,7 +11,7 @@ const SERVIDOR_PORTA = 3300;
 // configure a linha abaixo caso queira que os dados capturados sejam inseridos no banco de dados.
 // false -> nao insere
 // true -> insere
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 // altere o valor da variável AMBIENTE para o valor desejado:
 // API conectada ao banco de dados remoto, SQL Server -> 'producao'
@@ -20,20 +20,20 @@ const AMBIENTE = 'desenvolvimento';
 
 const serial = async (
     valoresSteeping,
-        valoresMalting1,
-        valoresMalting2,
-        valoresMalting3,
-        valoresMilling,
-        valoresMashing1,
-        valoresMashing2,
-        valoresMashing3,
-        valoresBrewing,
-        valoresCooling1,
-        valoresCooling2,
-        valoresCooling3,
-        valoresMaturation,
-        valoresPackaging,
-        valoresFinalProduct
+    valoresMalting1,
+    valoresMalting2,
+    valoresMalting3,
+    valoresMilling,
+    valoresMashing1,
+    valoresMashing2,
+    valoresMashing3,
+    valoresBrewing,
+    valoresCooling1,
+    valoresCooling2,
+    valoresCooling3,
+    valoresMaturation,
+    valoresPackaging,
+    valoresFinalProduct
 ) => {
     let poolBancoDados = ''
 
@@ -43,9 +43,9 @@ const serial = async (
                 // altere!
                 // CREDENCIAIS DO BANCO LOCAL - MYSQL WORKBENCH
                 host: 'localhost',
-                user: 'USUARIO_DO_BANCO_LOCAL',
-                password: 'SENHA_DO_BANCO_LOCAL',
-                database: 'DATABASE_LOCAL'
+                user: 'usuarioCervejaria',
+                password: 'sptech',
+                database: 'cervejaLager'
             }
         ).promise();
     } else if (AMBIENTE == 'producao') {
@@ -70,23 +70,23 @@ const serial = async (
         console.log(`A leitura do arduino foi iniciada na porta ${portaArduino.path} utilizando Baud Rate de ${SERIAL_BAUD_RATE}`);
     });
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
-        //console.log(data);
+        console.log(data);
         const valores = data.split(';');
         const steeping = parseFloat(valores[0]);
         const malting1 = parseFloat(valores[1]);
         const malting2 = parseFloat(valores[2]);
         const malting3 = parseFloat(valores[3]);
-        const milling = parseInt(valores[4]);
-        const mashing1 = parseInt(valores[5]);
-        const mashing2 = parseInt(valores[6]);
-        const mashing3 = parseInt(valores[7]);
-        const brewing = parseInt(valores[8]);
-        const cooling1 = parseInt(valores[9]);
-        const cooling2 = parseInt(valores[10]);
-        const cooling3 = parseInt(valores[11]);
-        const maturation = parseInt(valores[12]);
-        const packaging = parseInt(valores[13]);
-        const finalProduct = parseInt(valores[14]);
+        const milling = parseFloat(valores[4]);
+        const mashing1 = parseFloat(valores[5]);
+        const mashing2 = parseFloat(valores[6]);
+        const mashing3 = parseFloat(valores[7]);
+        const brewing = parseFloat(valores[8]);
+        const cooling1 = parseFloat(valores[9]);
+        const cooling2 = parseFloat(valores[10]);
+        const cooling3 = parseFloat(valores[11]);
+        const maturation = parseFloat(valores[12]);
+        const packaging = parseFloat(valores[13]);
+        const finalProduct = parseFloat(valores[14]);
 
         valoresSteeping.push(steeping);
         valoresMalting1.push(malting1);
@@ -151,21 +151,21 @@ const serial = async (
 }
 
 (async () => {
-    const valoresSteeping = [],
-    const valoresMalting1 = [],
-    const valoresMalting2 = [],
-    const valoresMalting3 = [],
-    const valoresMilling = [],
-    const valoresMashing1 = [],
-    const valoresMashing2 = [],
-    const valoresMashing3 = [],
-    const valoresBrewing = [],
-    const valoresCooling1 = [],
-    const valoresCooling2 = [],
-    const valoresCooling3 = [],
-    const valoresMaturation = [],
-    const valoresPackaging = [],
-    const valoresFinalProduct = [],
+    const valoresSteeping = [];
+    const valoresMalting1 = [];
+    const valoresMalting2 = [];
+    const valoresMalting3 = [];
+    const valoresMilling = [];
+    const valoresMashing1 = [];
+    const valoresMashing2 = [];
+    const valoresMashing3 = [];
+    const valoresBrewing = [];
+    const valoresCooling1 = [];
+    const valoresCooling2 = [];
+    const valoresCooling3 = [];
+    const valoresMaturation = [];
+    const valoresPackaging = [];
+    const valoresFinalProduct = [];
     await serial(
         valoresSteeping,
         valoresMalting1,
