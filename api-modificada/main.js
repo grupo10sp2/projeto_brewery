@@ -19,11 +19,21 @@ const HABILITAR_OPERACAO_INSERIR = true;
 const AMBIENTE = 'desenvolvimento';
 
 const serial = async (
-    valoresDht11Umidade,
-    valoresDht11Temperatura,
-    valoresLuminosidade,
-    valoresLm35Temperatura,
-    valoresChave
+    valoresSteeping,
+        valoresMalting1,
+        valoresMalting2,
+        valoresMalting3,
+        valoresMilling,
+        valoresMashing1,
+        valoresMashing2,
+        valoresMashing3,
+        valoresBrewing,
+        valoresCooling1,
+        valoresCooling2,
+        valoresCooling3,
+        valoresMaturation,
+        valoresPackaging,
+        valoresFinalProduct
 ) => {
     let poolBancoDados = ''
 
@@ -140,116 +150,23 @@ const serial = async (
     });
 }
 
-
-// não altere!
-const servidor = (
-    valoresSteeping,
-    valoresMalting1,
-    valoresMalting2,
-    valoresMalting3,
-    valoresMilling,
-    valoresMashing1,
-    valoresMashing2,
-    valoresMashing3,
-    valoresBrewing,
-    valoresCooling1,
-    valoresCooling2,
-    valoresCooling3,
-    valoresMaturation,
-    valoresPackaging,
-    valoresFinalProduct
-) => {
-    const app = express();
-    app.use((request, response, next) => {
-        response.header('Access-Control-Allow-Origin', '*');
-        response.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-        next();
-    });
-    app.listen(SERVIDOR_PORTA, () => {
-        console.log(`API executada com sucesso na porta ${SERVIDOR_PORTA}`);
-    });
-    app.get('/sensores/steeping', (_, response) => {
-        return response.json(valoresSteeping);
-    });
-    app.get('/sensores/malting1', (_, response) => {
-        return response.json(valoresMalting1);
-    });
-    app.get('/sensores/malting2', (_, response) => {
-        return response.json(valoresMalting2);
-    });
-    app.get('/sensores/malting3', (_, response) => {
-        return response.json(valoresMalting3);
-    });
-    app.get('/sensores/milling', (_, response) => {
-        return response.json(valoresMilling);
-    });
-    app.get('/sensores/mashing1', (_, response) => {
-        return response.json(valoresMashing1);
-    });
-    app.get('/sensores/mashing2', (_, response) => {
-        return response.json(valoresMashing2);
-    });
-    app.get('/sensores/mashing3', (_, response) => {
-        return response.json(valoresMashing3);
-    });
-    app.get('/sensores/brewing', (_, response) => {
-        return response.json(valoresBrewing);
-    });
-    app.get('/sensores/cooling1', (_, response) => {
-        return response.json(valoresCooling1);
-    });
-    app.get('/sensores/cooling2', (_, response) => {
-        return response.json(valoresCooling2);
-    });
-    app.get('/sensores/cooling3', (_, response) => {
-        return response.json(valoresCooling3);
-    });
-    app.get('/sensores/maturation', (_, response) => {
-        return response.json(valoresMaturation);
-    });
-    app.get('/sensores/packaging', (_, response) => {
-        return response.json(valoresPackaging);
-    });
-    app.get('/sensores/finalProduct', (_, response) => {
-        return response.json(valoresFinalProduct);
-    });
-}
-
-
 (async () => {
-    const valoresSteeping = []
-    const valoresMalting1 = []
-    const valoresMalting2 = []
-    const valoresMalting3 = []
-    const valoresMilling = []
-    const valoresMashing1 = []
-    const valoresMashing2 = []
-    const valoresMashing3 = []
-    const valoresBrewing = []
-    const valoresCooling1 = []
-    const valoresCooling2 = []
-    const valoresCooling3 = []
-    const valoresMaturation = []
-    const valoresPackaging = []
-    const valoresFinalProduct = []
+    const valoresSteeping = [],
+    const valoresMalting1 = [],
+    const valoresMalting2 = [],
+    const valoresMalting3 = [],
+    const valoresMilling = [],
+    const valoresMashing1 = [],
+    const valoresMashing2 = [],
+    const valoresMashing3 = [],
+    const valoresBrewing = [],
+    const valoresCooling1 = [],
+    const valoresCooling2 = [],
+    const valoresCooling3 = [],
+    const valoresMaturation = [],
+    const valoresPackaging = [],
+    const valoresFinalProduct = [],
     await serial(
-        valoresSteeping,
-        valoresMalting1,
-        valoresMalting2,
-        valoresMalting3,
-        valoresMilling,
-        valoresMashing1,
-        valoresMashing2,
-        valoresMashing3,
-        valoresBrewing,
-        valoresCooling1,
-        valoresCooling2,
-        valoresCooling3,
-        valoresMaturation,
-        valoresPackaging,
-        valoresFinalProduct
-    );
-    servidor(
         valoresSteeping,
         valoresMalting1,
         valoresMalting2,
